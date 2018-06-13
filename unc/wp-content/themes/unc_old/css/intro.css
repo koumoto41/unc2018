@@ -1,0 +1,93 @@
+@charset "UTF-8";
+
+/**************************************************************************************************
+INTRO PAGE
+**************************************************************************************************/
+
+div.container_intro {
+	margin: 0 auto;
+	padding-top: 0px;
+	width: 961px;
+	text-align: center;
+}
+
+@media screen and (max-width: 961px){
+	div.container_intro{ width: 99%; }
+}
+
+	div.container_intro h1 {
+		font-size: 3.0em;
+		color:#666;
+		font-family: 'Montserrat', sans-serif;
+		letter-spacing: 0.5px;
+		line-height: 150%;
+	}
+
+	@media screen and (max-width: 630px){
+		div.container_intro h1 {
+			font-size: 1.8em;
+		}
+	}
+	div.container_intro h2 {
+		font-size: 2.0em;
+		color: #e2c260;
+		font-family: 'Montserrat', sans-serif;
+		letter-spacing: 0.5px;
+		line-height: 150%;
+	}
+
+	div.container_intro .ticket {
+		margin: 20px 0;
+		font-size: 1.2em;
+	}
+
+	div.container_intro .banner{
+		margin-top:20px;
+		margin-bottom:20px;
+		text-align:center;
+	}
+		div.container_intro .banner img{
+			width: 350px;
+			text-align:center;
+		}
+
+
+
+
+
+
+
+	div.container_intro .footer {
+		margin: 0 auto;
+	}
+		div.container_intro .footer .link {
+			padding-left:0;
+			margin: 20px auto;
+			width: 100%;
+			list-style: none;
+		}
+			div.container_intro .footer .link li {
+				display: inline-block;
+				padding	: 0 10px;
+			}
+				div.container_intro .footer .link li a {
+					color: #ffffff;
+					font-size: 0.5em;
+					font-weight: bold;
+					text-decoration: none;
+					text-shadow: none;
+				}
+
+				@media screen and (max-width: 961px){
+					div.container_intro .footer .link li a{
+						margin-bottom:10px;
+					}
+				}
+
+	div.container_intro .footer .copyright {
+		margin: 10px auto;
+		color:#666;
+		background: none;
+		text-align: center;
+	}
+
