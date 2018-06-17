@@ -31,10 +31,10 @@ if (isset($_SERVER['SERVER_NAME']) && $_SERVER['SERVER_NAME'] == 'natural-camp.j
 
 // ** MySQL 設定 ** //
 if (CONST_SERVER_MODE) {
-	define('DB_NAME', 'LAA0038227-unc2017');
+	define('DB_NAME', 'LAA0038227-unc2018');
 	define('DB_USER', 'LAA0038227');
 	define('DB_PASSWORD', 'qfwcqkow');
-	define('DB_HOST', 'mysql123.phy.lolipop.lan');
+	define('DB_HOST', 'mysql104.phy.lolipop.lan');
 	define('DB_CHARSET', 'utf8');
 	define('DB_COLLATE', '');
 
