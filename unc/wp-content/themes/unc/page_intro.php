@@ -17,82 +17,96 @@
 		<meta property="og:title" content="<?= DEF_TITLE ?>" />
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:site" content="@naturalcamp" />
-		<link rel="icon" href="<?= SITE_URL ?>/favicon.ico" type="image/x-icon" />
-		<link rel="Shortcut Icon" type="image/x-icon" href="<?= SITE_URL ?>/favicon.ico" />
-		<link rel="apple-touch-icon-precomposed" href="<?= SITE_URL ?>/apple-touch-icon-precomposed.png" />
-		<link rel="stylesheet" media="all" href="<?= THEME_URL ?>/css/bootstrap.min.css" />
-		<link rel="stylesheet" media="all" href="<?= THEME_URL ?>/css/theme.css" />
-		<link rel="stylesheet" media="all" href="<?= THEME_URL ?>/css/common.css" />
-		<link rel="stylesheet" media="all" href="<?= THEME_URL ?>/css/intro.css" />
-		<script src="<?= THEME_URL ?>/lib/jquery/jquery-1.8.3.js"></script>
-		<script src="<?= THEME_URL ?>/lib/maximage/jquery.maximage.min.js"></script>
-		<?= wp_head(); ?>
-		<!--[if lt IE 10]>
-		<script src="<?= THEME_URL ?>/js/html5shiv/html5shiv.js"></script>
-		<![endif]-->
-</head>
-<body>
-	<img class="background_img" src="<?= THEME_URL ?>/intro/img/back.jpg" alt="牛窓ナチュラルキャンプ2018" />
+		<link rel="apple-touch-icon" sizes="180x180" href="<?= THEME_URL ?>/favicons/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="<?= THEME_URL ?>/favicons/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="<?= THEME_URL ?>/favicons/favicon-16x16.png">
+		<link rel="manifest" href="/site.webmanifest">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="theme-color" content="#ffffff">
+		<style>
+			.image_block {
+				position: fixed;
+				top: -50%;
+				left: -50%;
+				width: 200%;
+				height: 200%;
+				z-index: -1;
+			}
+			.image_block img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				margin: auto;
+				min-width: 50%;
+				min-height: 50%;
+			}
 
-	<section id="container_intro">
-		<div class="pb20">
-			<img src="<?= THEME_URL ?>/images/intro/logo.png" alt="牛窓ナチュラルキャンプ2015 開催決定" />
+			.sns {
+				position: fixed;
+				bottom: 0;
+				width: 100%;
+				height: 40px;
+				text-align: center;
+			}
+
+			@media (max-width: 730px) {
+				.image_block {
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: auto;
+				}
+				.image_block img {
+					bottom: auto;
+				}
+				.sns {
+					bottom: 30%;
+				}
+			}
+		</style>
+
+		<?= wp_head(); ?>
+
+	</head>
+	<body>
+		<div class="image_block">
+			<img src="<?= THEME_URL ?>/intro/unc2018.jpg" alt="<?= DEF_TITLE ?>">
 		</div>
 
 		<!--sns start-->
-		<div id="sns_intro" class="mt40">
+		<div class="sns">
 			<a href="https://twitter.com/share" class="twitter-share-button" data-hashtags="unc2014">Tweet</a>
 			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 			<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fnatural-camp.jp%2F&amp;send=false&amp;layout=button_count&amp;width=120&amp;show_faces=true&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:120px; height:21px;" allowTransparency="true"></iframe>
 		</div>
 		<!--sns end-->
-		<!--
-		<div class="mt40 youtube">
-			<iframe width="600" height="338" src="//www.youtube.com/embed/8X5go6L_k3I" frameborder="0" allowfullscreen></iframe>
-		</div>
-		-->
-		<div class="footer mt30">
-			<!-- <div class="border"></div> -->
-			<ul class="link">
-				<li><a href="<?= SITE_URL ?>/2010" class="btn btn-block btn-primary pa10">UNC 2010</a></li>
-				<li><a href="<?= SITE_URL ?>/2011" class="btn btn-block btn-success pa10">UNC 2011</a></li>
-				<li><a href="<?= SITE_URL ?>/2012" class="btn btn-block btn-info pa10">UNC 2012</a></li>
-				<li><a href="<?= SITE_URL ?>/2013" class="btn btn-block btn-warning pa10">UNC 2013</a></li>
-				<li><a href="<?= SITE_URL ?>/2014" class="btn btn-block btn-danger pa10">UNC 2014</a></li>
-				<li><a href="mailto:info@natural-camp.jp" class="btn btn-block btn-info pa10">MAILTO UNC</a></li>
-			</ul>
-			<div class="copyright pt30">
-				Copyright (C) 2015 Ushimado Natural Camp All Rights Reserved.
-			</div>
-		</div>
 
+		<div id="fb-root"></div>
+		<script type="text/javascript">
+			(function(d, s, id) {
+					var js, fjs = d.getElementsByTagName(s)[0];
+					if (d.getElementById(id)) return;
+					js = d.createElement(s); js.id = id;
+					js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
+					fjs.parentNode.insertBefore(js, fjs);
+				}
+				(document, 'script', 'facebook-jssdk')
+			);
+		</script>
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-24542939-1']);
+			_gaq.push(['_trackPageview']);
 
+			(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
 
-
-	</section>
-	<div id="fb-root"></div>
-	<script type="text/javascript">
-		(function(d, s, id) {
-				var js, fjs = d.getElementsByTagName(s)[0];
-				if (d.getElementById(id)) return;
-				js = d.createElement(s); js.id = id;
-				js.src = "//connect.facebook.net/ja_JP/all.js#xfbml=1";
-				fjs.parentNode.insertBefore(js, fjs);
-			}
-			(document, 'script', 'facebook-jssdk')
-		);
-	</script>
-	<script type="text/javascript">
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-24542939-1']);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		})();
-	</script>
-	<?= wp_footer(); ?>
-</body>
+		<?= wp_footer(); ?>
+	</body>
 </html>
