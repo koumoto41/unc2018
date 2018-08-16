@@ -123,7 +123,7 @@ define('THEME_URL', get_bloginfo('template_directory'));
 // タイトルデフォルト
 define('DEF_TITLE', get_bloginfo('name'));
 // キーワードデフォルト
-define('DEF_KEYWORDS', '牛窓ナチュラルキャンプ,牛窓ナチュラルキャンプ2018,うしまど,岡山県,瀬戸内市,黒島,無人島');
+define('DEF_KEYWORDS', 'ウシマドナチュラルキャンプ,岡山県,フェス');
 // ディスクリプションデフォルト
 define('DEF_DESCRIPTION', get_bloginfo('description'));
 

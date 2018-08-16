@@ -23,12 +23,20 @@
 		return $tmp;
 	}
 
+    // ▼通常のyoutubeURL作成
+    function normalYoutube($id) {
+        $tmp = '';
+        if ($id != '') $tmp = 'https://www.youtube.com/watch?v='.$id;
+        return $tmp;
+    }
+
+
 	// ▼画像の有無: $size 'M' or 'L'
 	function checkImage($url, $size) {
 		if ($url == '') {
 			switch($size) {
 				case 'M':
-					$url = THEME_URL.'/images/no_image.png';
+					$url = THEME_URL.'/images/no_image_s.png';
 					break;
 				case 'L':
 					$url = THEME_URL.'/images/no_image.png';

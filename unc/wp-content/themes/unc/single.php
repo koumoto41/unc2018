@@ -5,32 +5,39 @@
  * @package Moesia
  */
 
-get_header(); ?>
+get_header();
+
+?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
 		<?php while ( have_posts() ) : the_post(); ?>
-
-			<?php if ( !is_singular( 'projects' ) ): ?>
-				<?php get_template_part( 'content', 'single' ); ?>
-			<?php else : ?>
-				<?php get_template_part( 'content', 'project' ); ?>
-			<?php endif; ?>	
-
-			<?php if (get_theme_mod('author_bio') != '') : ?>
-				<?php get_template_part( 'author-bio' ); ?>
-			<?php endif; ?>			
-
-			<?php moesia_post_nav(); ?>
-
 			<?php
-				// If comments are open or we have at least one comment, load up the comment template
-				if ( comments_open() || '0' != get_comments_number() ) :
-					comments_template();
-				endif;
+				while(have_posts()) : the_post();
+					$title     = esc_html(get_the_title());
+					$eye_catch = esc_url(wp_get_attachment_url(get_post_thumbnail_id()));
+					$content   = get_the_content();
+				endwhile;
 			?>
 
+			<article>
+
+                <?php if ($eye_catch != ''): ?>
+					<div class="single-thumb">
+                        <img src="<?= wp_get_attachment_url( get_post_thumbnail_id() ) ?>" alt="<?= $title ?>" class="img-responsive" />
+					</div>
+                <?php endif; ?>
+
+				<header class="entry-header">
+					<h2 class="entry-title"><?= $title ?></h2>
+				</header>
+
+				<div class="entry-content">
+                    <?= $content; ?>
+				</div>
+
+			</article>
 		<?php endwhile; // end of the loop. ?>
 
 		</main><!-- #main -->

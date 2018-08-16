@@ -27,7 +27,7 @@ require_once locate_template('include/functions_theme.php');
 function get_breadcrumb(){
 	global $post;
 	$breadcrumb = '';
-	$breadcrumb .= '<li><a href="'.home_url().'"><i class="glyphicon glyphicon-tent"></i></a></li>';
+	$breadcrumb .= '<li><a href="'.home_url().'">HOME</a></li>';
 
 	// CATEGORY
 	if (is_category()){

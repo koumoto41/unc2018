@@ -2,22 +2,25 @@
 /*
 Template Name: Front Page
 */
-
-get_header(); ?>
+?>
+<?php get_header(); ?>
 
 	<div id="primary" class="fp-content-area">
 		<main id="main" class="site-main" role="main">
-
 			<div class="entry-content">
-				<?php the_content(); ?>
-				<?php
-					wp_link_pages( array(
-						'before' => '<div class="page-links">' . __( 'Pages:', 'moesia' ),
-						'after'  => '</div>',
-					) );
-				?>
+				<div class="panel-layout">
+					<!-- DAY -->
+                    <?php get_template_part('content', 'front_back'); ?>
+					<!-- INFO -->
+                    <?php get_template_part('content', 'front_info'); ?>
+					<!-- LIVE -->
+					<?php get_template_part('content', 'front_live'); ?>
+					<!-- MAP -->
+                    <?php get_template_part('content', 'front_map'); ?>
+					<!-- SUPPORT -->
+                    <?php get_template_part('content', 'front_support'); ?>
+				</div><!-- .panel-layout -->
 			</div><!-- .entry-content -->
-
 		</main><!-- #main -->
 	</div><!-- #primary -->
 

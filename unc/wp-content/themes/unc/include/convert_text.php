@@ -1,164 +1,161 @@
 <?php
-	// LIVE情報項目変換
-	function convLiveInfo($id) {
+// LIVE情報項目変換
+function convLiveInfo($id)
+{
 
-		$ary = array();
+    $ary = array();
 
-		$ary['link']        = esc_url(get_permalink($id));
-		$ary['type']         = esc_html(get_field('live_type',$id));
-		$ary['flg']         = esc_html(get_field('live_flg',$id));
-		$ary['stage']       = esc_html(get_field('live_stage', $id));
-		$ary['name']        = esc_html(get_field('live_name', $id));
-		$ary['description'] = get_field('live_description', $id);
-		$ary['youtube']     = esc_url(embedYoutube(get_field('live_youtube', $id)));
+    $ary['link'] = esc_url(get_permalink($id));
+    $ary['type'] = esc_html(get_field('live_type', $id));
+    $ary['flg'] = esc_html(get_field('live_flg', $id));
+    $ary['stage'] = esc_html(get_field('live_stage', $id));
+    $ary['name'] = esc_html(get_field('live_name', $id));
+    $ary['description'] = get_field('live_description', $id);
+    $ary['youtube_embed'] = esc_url(embedYoutube(get_field('live_youtube', $id)));
+    $ary['youtube'] = esc_url(normalYoutube(get_field('live_youtube', $id)));
 
-		$tmp = get_field('live_image',$id);
-		$ary['image_th'] = wp_get_attachment_image_src($tmp,'thumbnail');
-		$ary['image_lg'] = wp_get_attachment_image_src($tmp,'large');
-		$ary['image_th'] = esc_url(checkImage($ary['image_th'][0], 'M'));
-		$ary['image_lg'] = $ary['image_lg'][0];
+    $ary['facebook'] = esc_url(get_field('live_facebook', $id));
+    $ary['homepage'] = esc_url(get_field('live_homepage', $id));
+    $ary['twitter'] = esc_url(get_field('live_twitter', $id));
 
-		$ary['ex_link']    = array();
+    $tmp = get_field('live_image', $id);
+    $ary['image_th'] = wp_get_attachment_image_src($tmp, 'thumbnail');
+    $ary['image_lg'] = wp_get_attachment_image_src($tmp, 'large');
+    $ary['image_th'] = esc_url(checkImage($ary['image_th'][0], 'M'));
+    $ary['image_lg'] = $ary['image_lg'][0];
 
-		// LINK
-		$scf = SCF::get('link', $id);
-		foreach ($scf as $key => $value) {
-			$tmp = array();
-			$tmp['link_title'] = esc_html($value['link_title']);
-			$tmp['link_url']   = esc_url($value['link_url']);
+    return $ary;
+}
 
-			if ($tmp['link_title'] != '' && $tmp['link_url'] != '') {
-				$ary['ex_link'][] = $tmp;
-			}
-		}
+// FOOD情報項目変換
+function convFoodInfo($id)
+{
 
-		return $ary;
-	}
+    $ary = array();
 
-	// FOOD情報項目変換
-	function convFoodInfo($id) {
+    $ary['link'] = esc_url(get_permalink($id));
+    $ary['flg'] = esc_html(get_field('food_flg', $id));
+    $ary['name'] = esc_html(get_field('food_name', $id));
+    $ary['description'] = get_field('food_description', $id);
 
-		$ary = array();
+    $tmp = get_field('food_image', $id);
+    $ary['image_th'] = wp_get_attachment_image_src($tmp, 'thumbnail');
+    $ary['image_lg'] = wp_get_attachment_image_src($tmp, 'large');
+    $ary['image_th'] = esc_url(checkImage($ary['image_th'][0], 'M'));
+    $ary['image_lg'] = $ary['image_lg'][0];
 
-		$ary['link']        = esc_url(get_permalink($id));
-		$ary['flg']         = esc_html(get_field('food_flg',$id));
-		$ary['name']        = esc_html(get_field('food_name', $id));
-		$ary['description'] = get_field('food_description', $id);
-
-		$tmp = get_field('food_image',$id);
-		$ary['image_th'] = wp_get_attachment_image_src($tmp,'thumbnail');
-		$ary['image_lg'] = wp_get_attachment_image_src($tmp,'large');
-		$ary['image_th'] = esc_url(checkImage($ary['image_th'][0], 'M'));
-		$ary['image_lg'] = $ary['image_lg'][0];
-
-		$ary['ex_link']    = array();
+    $ary['ex_link'] = array();
 
 
-		// LINK
-		$scf = SCF::get('link', $id);
-		foreach ($scf as $key => $value) {
-			$tmp = array();
-			$tmp['link_title'] = esc_html($value['link_title']);
-			$tmp['link_url']   = esc_url($value['link_url']);
+    // LINK
+    $scf = SCF::get('link', $id);
+    foreach ($scf as $key => $value) {
+        $tmp = array();
+        $tmp['link_title'] = esc_html($value['link_title']);
+        $tmp['link_url'] = esc_url($value['link_url']);
 
-			if ($tmp['link_title'] != '' && $tmp['link_url'] != '') {
-				$ary['ex_link'][] = $tmp;
-			}
-		}
+        if ($tmp['link_title'] != '' && $tmp['link_url'] != '') {
+            $ary['ex_link'][] = $tmp;
+        }
+    }
 
-		return $ary;
-	}
+    return $ary;
+}
 
-	// MARKET情報項目変換
-	function convMarketInfo($id) {
+// MARKET情報項目変換
+function convMarketInfo($id)
+{
 
-		$ary = array();
+    $ary = array();
 
-		$ary['link']        = esc_url(get_permalink($id));
-		$ary['flg']         = esc_html(get_field('market_flg',$id));
-		$ary['name']        = esc_html(get_field('market_name', $id));
-		$ary['description'] = get_field('market_description', $id);
+    $ary['link'] = esc_url(get_permalink($id));
+    $ary['flg'] = esc_html(get_field('market_flg', $id));
+    $ary['name'] = esc_html(get_field('market_name', $id));
+    $ary['description'] = get_field('market_description', $id);
 
-		$tmp = get_field('market_image',$id);
-		$ary['image_th'] = wp_get_attachment_image_src($tmp,'thumbnail');
-		$ary['image_lg'] = wp_get_attachment_image_src($tmp,'large');
-		$ary['image_th'] = esc_url(checkImage($ary['image_th'][0], 'M'));
-		$ary['image_lg'] = $ary['image_lg'][0];
+    $tmp = get_field('market_image', $id);
+    $ary['image_th'] = wp_get_attachment_image_src($tmp, 'thumbnail');
+    $ary['image_lg'] = wp_get_attachment_image_src($tmp, 'large');
+    $ary['image_th'] = esc_url(checkImage($ary['image_th'][0], 'M'));
+    $ary['image_lg'] = $ary['image_lg'][0];
 
-		$ary['ex_link']    = array();
-
-
-		// LINK
-		$scf = SCF::get('link', $id);
-		foreach ($scf as $key => $value) {
-			$tmp = array();
-			$tmp['link_title'] = esc_html($value['link_title']);
-			$tmp['link_url']   = esc_url($value['link_url']);
-
-			if ($tmp['link_title'] != '' && $tmp['link_url'] != '') {
-				$ary['ex_link'][] = $tmp;
-			}
-		}
-
-		return $ary;
-	}
-
-	// WORKSHOP情報項目変換
-	function convWorkshopInfo($id) {
-
-		$ary = array();
-
-		$ary['link']        = esc_url(get_permalink($id));
-		$ary['flg']         = esc_html(get_field('workshop_flg',$id));
-		$ary['name']        = esc_html(get_field('workshop_name', $id));
-		$ary['description'] = get_field('workshop_description', $id);
-		$ary['timetable']   = get_field('workshop_timetable', $id);
-		$ary['unit']        = esc_html(get_field('workshop_unit', $id));
-		$ary['unitlink']    = esc_url(get_field('workshop_unitlink', $id));
-		$ary['cost']        = get_field('workshop_cost', $id);
-		$ary['subject']     = get_field('workshop_subject', $id);
-		$ary['attention']   = get_field('workshop_attention', $id);
-
-		$tmp = get_field('workshop_image',$id);
-		$ary['image_th'] = wp_get_attachment_image_src($tmp,'thumbnail');
-		$ary['image_lg'] = wp_get_attachment_image_src($tmp,'large');
-		$ary['image_th'] = esc_url(checkImage($ary['image_th'][0], 'M'));
-		$ary['image_lg'] = $ary['image_lg'][0];
-
-		$ary['ex_link']    = array();
+    $ary['ex_link'] = array();
 
 
-		// LINK
-		$scf = SCF::get('link', $id);
-		foreach ($scf as $key => $value) {
-			$tmp = array();
-			$tmp['link_title'] = esc_html($value['link_title']);
-			$tmp['link_url']   = esc_url($value['link_url']);
+    // LINK
+    $scf = SCF::get('link', $id);
+    foreach ($scf as $key => $value) {
+        $tmp = array();
+        $tmp['link_title'] = esc_html($value['link_title']);
+        $tmp['link_url'] = esc_url($value['link_url']);
 
-			if ($tmp['link_title'] != '' && $tmp['link_url'] != '') {
-				$ary['ex_link'][] = $tmp;
-			}
-		}
+        if ($tmp['link_title'] != '' && $tmp['link_url'] != '') {
+            $ary['ex_link'][] = $tmp;
+        }
+    }
 
-		return $ary;
-	}
+    return $ary;
+}
 
-	// ARTWORK情報項目変換
-	function convArtworkInfo($id) {
+// WORKSHOP情報項目変換
+function convWorkshopInfo($id)
+{
 
-		$ary = array();
+    $ary = array();
 
-		$ary['link']        = esc_url(get_permalink($id));
-		$ary['flg']         = esc_html(get_field('artwork_flg',$id));
-		$ary['name']        = esc_html(get_field('artwork_name', $id));
-		$ary['description'] = get_field('artwork_description', $id);
+    $ary['link'] = esc_url(get_permalink($id));
+    $ary['flg'] = esc_html(get_field('workshop_flg', $id));
+    $ary['name'] = esc_html(get_field('workshop_name', $id));
+    $ary['description'] = get_field('workshop_description', $id);
+    $ary['timetable'] = get_field('workshop_timetable', $id);
+    $ary['unit'] = esc_html(get_field('workshop_unit', $id));
+    $ary['unitlink'] = esc_url(get_field('workshop_unitlink', $id));
+    $ary['cost'] = get_field('workshop_cost', $id);
+    $ary['subject'] = get_field('workshop_subject', $id);
+    $ary['attention'] = get_field('workshop_attention', $id);
 
-		$tmp = get_field('artwork_image',$id);
-		$ary['image_th'] = wp_get_attachment_image_src($tmp,'thumbnail');
-		$ary['image_lg'] = wp_get_attachment_image_src($tmp,'large');
-		$ary['image_th'] = esc_url(checkImage($ary['image_th'][0], 'M'));
-		$ary['image_lg'] = $ary['image_lg'][0];
+    $tmp = get_field('workshop_image', $id);
+    $ary['image_th'] = wp_get_attachment_image_src($tmp, 'thumbnail');
+    $ary['image_lg'] = wp_get_attachment_image_src($tmp, 'large');
+    $ary['image_th'] = esc_url(checkImage($ary['image_th'][0], 'M'));
+    $ary['image_lg'] = $ary['image_lg'][0];
 
-		return $ary;
-	}
+    $ary['ex_link'] = array();
+
+
+    // LINK
+    $scf = SCF::get('link', $id);
+    foreach ($scf as $key => $value) {
+        $tmp = array();
+        $tmp['link_title'] = esc_html($value['link_title']);
+        $tmp['link_url'] = esc_url($value['link_url']);
+
+        if ($tmp['link_title'] != '' && $tmp['link_url'] != '') {
+            $ary['ex_link'][] = $tmp;
+        }
+    }
+
+    return $ary;
+}
+
+// ARTWORK情報項目変換
+function convArtworkInfo($id)
+{
+
+    $ary = array();
+
+    $ary['link'] = esc_url(get_permalink($id));
+    $ary['flg'] = esc_html(get_field('artwork_flg', $id));
+    $ary['name'] = esc_html(get_field('artwork_name', $id));
+    $ary['description'] = get_field('artwork_description', $id);
+
+    $tmp = get_field('artwork_image', $id);
+    $ary['image_th'] = wp_get_attachment_image_src($tmp, 'thumbnail');
+    $ary['image_lg'] = wp_get_attachment_image_src($tmp, 'large');
+    $ary['image_th'] = esc_url(checkImage($ary['image_th'][0], 'M'));
+    $ary['image_lg'] = $ary['image_lg'][0];
+
+    return $ary;
+}
+
 ?>
